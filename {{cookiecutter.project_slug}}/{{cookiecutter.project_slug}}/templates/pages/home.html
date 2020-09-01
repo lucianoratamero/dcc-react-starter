@@ -1,0 +1,55 @@
+{% raw %}{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="jumbotron">
+    <h1>Welcome to the EveryCheese React boilerplate! 🧀</h1>
+    <p>This is just a sample page. You'll modify this content along the way :]</p>
+    <p>Below is a sample React project to get started.</p>
+  </div>
+
+  <div id="react-eat-cheese-app"></div>
+
+  <script src="https://unpkg.com/react@16/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+  <script type="text/babel">
+    function TastyCheesesComponent() {
+      const [cheeseList, setCheeseList] = React.useState([
+        'Gouda',
+        'Cheddar',
+        'Camembert',
+        'Colby',
+        'Stracchino',
+        'Havarti',
+        'Kesong Putî',
+      ]);
+
+      const eatSomeCheese = function () {
+        cheeseList.pop();
+        setCheeseList([...cheeseList]);
+      }
+
+      return (
+        <div id="cheese-list" className="container mt-5">
+          <h1>Tasty cheeses :]</h1>
+          {cheeseList.map(function (cheeseName) {
+            return (
+              <p className="cheese-list__item">{cheeseName}</p>
+            );
+          })}
+          <hr />
+          <button onClick={eatSomeCheese} disabled={!cheeseList.length}>
+            {cheeseList.length ? "I'm still hungry :V" : "No more cheese, please D:"}
+          </button>
+        </div>
+      );
+    }
+
+    const domContainer = document.querySelector('#react-eat-cheese-app');
+    ReactDOM.render(<TastyCheesesComponent />, domContainer);
+  </script>
+
+</div>
+{% endblock %}{% endraw %}
